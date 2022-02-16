@@ -70,3 +70,20 @@ end
 # b.each {|arr| p arr.object_id}
 # p b
 
+def fibonacci(n)
+  return [1] if n == 0
+  return [1,1] if n == 1
+
+  previous = fibonacci(n-1)
+  last = previous[-1]
+  second_last = previous[-2]
+  previous << (last+second_last)
+end
+
+p fibonacci(0)
+p fibonacci(1)
+p fibonacci(2)
+p fibonacci(3)
+p fibonacci(4)
+p fibonacci(5)
+p fibonacci(6)
