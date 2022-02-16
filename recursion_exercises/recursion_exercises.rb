@@ -92,20 +92,25 @@ end
 
 #------Binary Search----------
 def bsearch(array, target)
-  return 0 if array.include?(target) && arr.length == 1
+  return nil if !array.include?(target)
+  return 0 if array.length == 1
 
   mid = array.length / 2
   if array[mid] == target 
-    return mid 
-  elsif
+    mid
+  elsif array[mid] < target 
+    mid + 1 + bsearch(array[mid+1..-1], target)
+  else
+    bsearch(array[0...mid], target)
+  end
     
 end
 
 
-# p bsearch([1, 2, 3], 1) # => 0
-# p bsearch([2, 3, 4, 5], 3) # => 1
-# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
 p bsearch([1, 3, 4, 5, 9], 5) # => 3
-# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
