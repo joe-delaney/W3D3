@@ -123,32 +123,19 @@ class Array
   end
 
   def merge(arr1, arr2) 
-    #(arr1 + arr2).sort
-
     new_arr = []
-    arr1_pointer = 0
-    arr2_pointer = 0
-    #While we still have numbers in arr1 or arr2
-    while arr1_pointer < arr1.length || arr2_pointer < arr2.length 
-      #Need to compare numbers if there are still numbers in arr1 or arr2
-      if arr1_pointer < arr1.length && arr2_pointer < arr2.length 
-        if arr1[arr1_pointer] < arr2[arr2_pointer]
-          new_arr << arr1[arr1_pointer]
-          arr1_pointer += 1
-        else
-          new_arr << arr2[arr2_pointer]
-          arr2_pointer += 1
-        end
-      #There are only numbers left in arr1
-      elsif arr1_pointer < arr1.length
-        new_arr << arr1[arr1_pointer]
-        arr1_pointer += 1
-      #There are only numbers left in arr2
+    while arr1.length > 0 && arr2.length > 0
+      if arr1[0] < arr2[0]
+        new_arr << arr1[0]
+        arr1.shift
       else
-        new_arr << arr2[arr2_pointer]
-        arr2_pointer += 1
+        new_arr << arr2[0]
+        arr2.shift
       end
     end
+
+    new_arr += arr1 if arr1.length > 0
+    new_arr += arr2 if arr2.length > 0
     new_arr
   end
 end
@@ -173,5 +160,17 @@ end
 #------Permutations--------
 
 def permutations(array)
-
+  return [array] if array.length == 1
+  previous = permutations(array[0...-1])
+  new_arr = []
+  previous.each do |arr| 
+    i = 0
+    while i <= arr.length
+      new_arr << arr[0...i] + [array[-1]] + arr[i..-1]
+      i += 1
+    end
+  end
+  new_arr
 end
+
+p permutations([1,2,3])
