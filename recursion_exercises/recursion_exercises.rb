@@ -30,4 +30,43 @@ def rec_exp2(b, n)
   end
 end
 
-p rec_exp2(7,7)
+#------Deep dup-----
+class Array
+  def deep_dup
+    return self.dup if self.length == 1 && !self[0].is_a?(Array)
+    new_arr = Array.new()
+    self.each do |data|
+      if data.is_a?(Array)
+        new_arr << data.deep_dup
+      else
+        new_arr << data
+      end
+    end
+    new_arr
+  end
+end
+
+# robot_parts = [
+#   ["nuts", "bolts", "washers"],
+#   ["capacitors", "resistors", "inductors"]
+# ]
+# p "Original Robot Parts Ids"
+# robot_parts.each {|arr| p arr.object_id}
+
+# robot_parts_copy = robot_parts.deep_dup
+
+# p "Copied Robot parts ids"
+# robot_parts_copy.each {|arr| p arr.object_id}
+
+# p robot_parts.deep_dup
+#a = [1, [2], [3, [4]]]
+# a = [[[[[["string"]]]]]]
+
+# puts "Original a ids"
+# a.each {|arr| p arr.object_id}
+
+# puts "New a ids"
+# b = a.deep_dup
+# b.each {|arr| p arr.object_id}
+# p b
+
