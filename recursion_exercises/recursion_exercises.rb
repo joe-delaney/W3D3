@@ -173,4 +173,24 @@ def permutations(array)
   new_arr
 end
 
-p permutations([1,2,3])
+# p permutations([1,2,3])
+
+#--------Make_Change--------
+def greedy_make_change(amount, coins = [25,10,5,1])
+  new_arr = []
+  max_coin = nil
+  coins.each do |coin|
+    if amount >= coin && max_coin.nil?
+      max_coin = coin
+    end
+  end
+  new_arr += [max_coin] + greedy_make_change(amount - max_coin, coins) if max_coin
+  new_arr
+end
+
+p greedy_make_change(24, [10,7,1])
+
+# def make_change(amount, coins = [25,10,5,1])
+
+# end
+
