@@ -184,13 +184,22 @@ def greedy_make_change(amount, coins = [25,10,5,1])
       max_coin = coin
     end
   end
+
   new_arr += [max_coin] + greedy_make_change(amount - max_coin, coins) if max_coin
   new_arr
 end
 
-p greedy_make_change(24, [10,7,1])
+# p greedy_make_change(24, [10,7,1])
 
-# def make_change(amount, coins = [25,10,5,1])
+def make_change(amount, coins = [25,10,5,1])
+  return [] if amount == 0
+  new_arr = []
+  coins.each_with_index do |coin,i|
+    if amount >= coin
+      new_arr << ([coin] + make_change(amount - coin, coins[i..-1])).flatten
+    end
+  end
+  new_arr.sort_by! { |array| array.length}[0] 
+end
 
-# end
-
+# p make_change(39)
