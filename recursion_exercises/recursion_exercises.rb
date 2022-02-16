@@ -202,4 +202,69 @@ def make_change(amount, coins = [25,10,5,1])
   new_arr.sort_by! { |array| array.length}[0] 
 end
 
-# p make_change(39)
+# p make_change(24, [10,7,1])
+
+# -----More Recursion Questions-------
+
+def rec_sum(array)
+  return nil if array.length == 0
+  return array[0] if array.length == 1
+  array.pop + rec_sum(array)
+end
+
+# p rec_sum([1,2,3,4])
+
+def rec_contains(array, target)
+  return false if array.length == 0
+  
+  if array[-1] == target 
+    return true
+  else
+    rec_contains(array[0...-1], target)
+  end
+end
+
+# p rec_contains([1,2,3,4], 2)
+# p rec_contains([1,2,3,4], 6)
+
+def rec_num_of_occurrences(array, target)
+  return 0 if array.length == 0 
+  if array[-1] == target 
+    return 1 + rec_num_of_occurrences(array[0...-1], target)
+  else
+    return 0 + rec_num_of_occurrences(array[0...-1], target)
+  end
+end
+
+# p rec_num_of_occurrences([1,2,2,2,1,1,2], 2)
+
+def rec_add_to_twelve?(array)
+  return false if array.length <= 1
+  return array[0] + array[1] == 12 if array.length == 2
+
+  if array[-1] + array[-2] == 12
+    return true 
+  else
+    rec_add_to_twelve?(array[0...-1])
+  end
+end
+
+def rec_sorted?(array)
+  return true if array.length == 1
+  if array[-1] < array[-2]
+    return false 
+  else
+    rec_sorted?(array[0...-1])
+  end
+end
+
+# p rec_sorted?([1,2,3,10,5,6])
+
+def rec_reverse(string)
+  return "" if string.length == 0
+  new_str = ""
+  new_str + string[-1] + rec_reverse(string[0...-1])
+end
+
+p rec_reverse("hello world!")
+
