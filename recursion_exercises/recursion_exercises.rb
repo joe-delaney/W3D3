@@ -106,11 +106,51 @@ def bsearch(array, target)
     
 end
 
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
-p bsearch([1, 2, 3], 1) # => 0
-p bsearch([2, 3, 4, 5], 3) # => 1
-p bsearch([2, 4, 6, 8, 10], 6) # => 2
-p bsearch([1, 3, 4, 5, 9], 5) # => 3
-p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+#------Merge Sort----------
+class Array
+  def merge_sort
+    return self if self.length == 1
+    middle = self.length / 2
+    merge(self[0...middle].merge_sort, self[middle..-1].merge_sort)
+  end
+
+  def merge(arr1, arr2) 
+    #(arr1 + arr2).sort
+
+    new_arr = []
+    arr1_pointer = 0
+    arr2_pointer = 0
+    #While we still have numbers in arr1 or arr2
+    while arr1_pointer < arr1.length || arr2_pointer < arr2.length 
+      #Need to compare numbers if there are still numbers in arr1 or arr2
+      if arr1_pointer < arr1.length && arr2_pointer < arr2.length 
+        if arr1[arr1_pointer] < arr2[arr2_pointer]
+          new_arr << arr1[arr1_pointer]
+          arr1_pointer += 1
+        else
+          new_arr << arr2[arr2_pointer]
+          arr2_pointer += 1
+        end
+      #There are only numbers left in arr1
+      elsif arr1_pointer < arr1.length
+        new_arr << arr1[arr1_pointer]
+        arr1_pointer += 1
+      #There are only numbers left in arr2
+      else
+        new_arr << arr2[arr2_pointer]
+        arr2_pointer += 1
+      end
+    end
+    new_arr
+  end
+end
+
+p [38,27,43,3,9,82,10].merge_sort
