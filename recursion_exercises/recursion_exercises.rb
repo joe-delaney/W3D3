@@ -153,4 +153,25 @@ class Array
   end
 end
 
-p [38,27,43,3,9,82,10].merge_sort
+# p [38,27,43,3,9,82,10].merge_sort
+
+#-------Array subsets------
+def subsets(array)
+  return [[]] if array.length == 0
+  previous = subsets(array[0...-1])
+  new_arr = previous.dup
+  previous.each {|arr| new_arr << arr + [array[-1]]}
+  new_arr
+end
+
+# p subsets([]) # => [[]]
+# p subsets([1]) # => [[], [1]]
+# p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+# p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]
+# p subsets([1,2,3,4])
+
+#------Permutations--------
+
+def permutations(array)
+
+end
