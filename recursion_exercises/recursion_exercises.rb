@@ -70,6 +70,8 @@ end
 # b.each {|arr| p arr.object_id}
 # p b
 
+
+#------Fibonacci----------
 def fibonacci(n)
   return [1] if n == 0
   return [1,1] if n == 1
@@ -80,10 +82,30 @@ def fibonacci(n)
   previous << (last+second_last)
 end
 
-p fibonacci(0)
-p fibonacci(1)
-p fibonacci(2)
-p fibonacci(3)
-p fibonacci(4)
-p fibonacci(5)
-p fibonacci(6)
+# p fibonacci(0)
+# p fibonacci(1)
+# p fibonacci(2)
+# p fibonacci(3)
+# p fibonacci(4)
+# p fibonacci(5)
+# p fibonacci(6)
+
+#------Binary Search----------
+def bsearch(array, target)
+  return 0 if array.include?(target) && arr.length == 1
+
+  mid = array.length / 2
+  if array[mid] == target 
+    return mid 
+  elsif
+    
+end
+
+
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
